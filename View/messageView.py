@@ -1,4 +1,4 @@
-from Modele.messageModel import *
+from Model.messageModel import *
 
 class View():
     """class for display all message """
