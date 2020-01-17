@@ -1,4 +1,6 @@
 from connection import *
+from getpass import *
+import hashlib
 
 class NewAccount():
     def __init__(self):
@@ -9,7 +11,7 @@ class NewAccount():
         self.email = None
         self.age = None
         self.password = None
-        
+
     def create_user(self):
         print("-----------------------------------------------------------------")
         print("Bienvenu sur le forum, nous allons procéder à votre inscription !")
@@ -19,7 +21,8 @@ class NewAccount():
         self.pseudo = input("Sous quel pseudo souhaitez-vous apparaitre ? ")
         self.email = input("Quel est votre E-mail ? ")
         self.age = int(input("Quel est votre age ? "))
-        self.password = input("Entrez votre Mot de passe : ")
+        self.password = getpass()
+        self.password = hashlib.sha256(b'').hexdigest()
         self.choice.initialize_connection()
         self.choice.cursor.execute("INSERT INTO Users(name,firstname,pseudo,email,age,password) VALUES (%s,%s,%s,%s,%s,%s);",(self.name,self.firstname,self.pseudo,self.email,self.age,self.password))
         self.choice.connection.commit()
